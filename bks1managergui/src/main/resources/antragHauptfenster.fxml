@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.thkoeln.swp.bks.managergui.control.antragHauptfensterController">
+  <tabs>
+    <Tab text="Kunde-Antraege">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="394.0" layoutX="-11.0" stroke="TRANSPARENT" strokeType="INSIDE" width="639.0" />
+                  <VBox layoutX="7.0" layoutY="55.0" prefHeight="307.0" prefWidth="587.0">
+                     <children>
+                        <TableView fx:id="kundeAntraegeTableView" prefHeight="265.0" prefWidth="587.0" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="zurueckAntragHauptfensterToHauptfenster_Button" layoutX="458.0" layoutY="329.0" mnemonicParsing="false" onAction="#zurueckAntragHauptfensterToHauptfenster_Button_On" prefHeight="32.0" prefWidth="135.0" text="Zurueck">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="kontoinformationenAntragHauptfensterToKontoinformationen_Button" layoutX="8.0" layoutY="11.0" mnemonicParsing="false" onAction="#kontoBearbeitenAntragHauptfensterToKontolimitAntragBearbeiten_Button_On" prefHeight="32.0" prefWidth="145.0" text="Kontolimit-Antrag genehmigen und bearbeiten" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="8.5" />
+                     </font>
+                  </Button>
+                  <Button fx:id="antragGenehmigenAntragHauptfensterToBearbeitungsadmin_Button" layoutX="159.0" layoutY="11.0" mnemonicParsing="false" onAction="#antragGenehmigenAntragHauptfensterToMultipleWindows_Button_On" prefHeight="32.0" prefWidth="145.0" text="Antrag genehmigen">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="antragGenehmigenAntragHauptfensterToAntragHauptfenster_Button" layoutX="309.0" layoutY="11.0" mnemonicParsing="false" onAction="#antragAblehnenAntragHauptfenster_Button_On" prefHeight="32.0" prefWidth="145.0" text="Antrag ablehnen">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="refreshAntragHauptfenster_Button" layoutX="458.0" layoutY="11.0" mnemonicParsing="false" onAction="#refreshKundeAntraege_Button_On" prefHeight="32.0" prefWidth="135.0" text="Refresh">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="Meine-Antraege">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="371.0" layoutX="-1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="607.0" />
+                  <VBox layoutX="8.0" layoutY="55.0" prefHeight="306.0" prefWidth="582.0">
+                     <children>
+                        <TableView fx:id="meineAntraegeTableView" prefHeight="307.0" prefWidth="583.0" />
+                     </children>
+                  </VBox>
+                  <Button fx:id="antragStellenAntragHauptfensterToAntragStellen_Button" layoutX="10.0" layoutY="10.0" minWidth="18.0" mnemonicParsing="false" onAction="#antragStellenAntragHauptfensterToAntragStellen_Button_On" prefHeight="32.0" prefWidth="135.0" text="Antrag stellen">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
+                  <Button fx:id="antragStornierenAntragHauptfensterToAntragStornieren_Button" layoutX="158.0" layoutY="10.0" minWidth="18.0" mnemonicParsing="false" onAction="#antragStornierenAntragHauptfensterToAntragStornieren_Button_On" prefHeight="32.0" prefWidth="135.0" text="Antrag stornieren">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="zurueckAntragHauptfensterToHauptfenster_Button" layoutX="457.0" layoutY="10.0" minWidth="18.0" mnemonicParsing="false" onAction="#zurueckAntragHauptfensterToHauptfenster_Button_On" prefHeight="32.0" prefWidth="135.0" text="Zurueck">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="refresh_Button" layoutX="307.0" layoutY="10.0" mnemonicParsing="false" onAction="#refreshMeineAntraege_Button_On" prefHeight="32.0" prefWidth="135.0" text="Refresh">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

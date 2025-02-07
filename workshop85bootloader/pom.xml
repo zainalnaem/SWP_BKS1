@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.thkoeln.swp.arzt</groupId>
+    <artifactId>bootloader</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- <skipTests>true</skipTests> -->
+        <src.dir>src/main/java</src.dir>
+        <test.dir>src/test/java</test.dir>
+    </properties>
+
+    <!-- Konfiguration des Maven-Repositories auf Gitlab -->
+    <repositories>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>https://gitlab.nt.fh-koeln.de/gitlab/api/v4/groups/8972/-/packages/maven</url>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${env.CI_PROJECT_ID}/packages/maven</url>
+        </repository>
+        <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${env.CI_PROJECT_ID}/packages/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+
+            <!-- Plugin zum Compilieren -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin zum Erstellen in einer JAR-Datei -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin zum Kopieren der Dependencies in einen Ordner (mlib) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/mlib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Plugin zum Starten der Anwendung -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--                 <mainClass>de.thkoeln.swp.arzt.bootloader.Main</mainClass> -->
+                    <skip>false</skip>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>--module-path</argument> <!-- or -p  -->
+                        <modulepath/>
+                        <!-- automatically creates the modulepath using all project dependencies,
+                             also adding the project build directory -->
+                        <argument>--module</argument>  <!-- or -m -->
+                        <argument>de.thkoeln.swp.arzt.bootloader/de.thkoeln.swp.arzt.bootloader.Main</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/com.fasterxml/classmate -->
+<!--
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>classmate</artifactId>
+            <version>0.5.4</version>
+        </dependency>
+-->
+
+        <!--
+                Der hibernate-validator enthält ein fasterxml, und zwar genau die Version, die beim Einsatz von hibernate 5.4.0.Final benoetigt wird
+                Wir verwenden im arztdbmodel die Version 5.4.10.Final von hibernate-core .
+                ToDo: Hibernate Update auf mindestens 6.2.3.Final , vielleicht auch 7.0.1.Final
+                ToDo: pruefen, ob die dependency auch im arztdbmodel stehen könnte statt hier
+        -->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.4.0.Final</version>
+        </dependency>
+
+            <!-- JavaFX Controls -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>21.0.2</version>
+        </dependency>
+
+            <!-- JavaFX FXML -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>21.0.2</version>
+        </dependency>
+
+            <!-- XML-Bind -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.4.0-b180830.0359</version>
+        </dependency>
+
+        <!-- Byte Buddy -->
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.12.8</version>
+        </dependency>
+
+        <!-- Komponente ComponentController -->
+        <dependency>
+            <groupId>de.thkoeln.swp.arzt</groupId>
+            <artifactId>componentcontroller</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente DatenhaltungAPI -->
+	    <dependency>
+            <groupId>de.thkoeln.swp.arzt</groupId>
+            <artifactId>datenhaltungapi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente ArztDBModel -->
+        <dependency>
+            <groupId>de.thkoeln.swp.arzt</groupId>
+            <artifactId>arztdbmodel</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente ArztDaten -->
+        <dependency>
+            <groupId>de.thkoeln.swp.arzt85</groupId>
+            <artifactId>arztdaten</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente ArztGUI -->
+        <dependency>
+            <groupId>de.thkoeln.swp.arzt85</groupId>
+            <artifactId>arztgui</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente ArztSteuerung -->
+        <dependency>
+            <groupId>de.thkoeln.swp.arzt85</groupId>
+            <artifactId>arztsteuerung</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Komponente SteuerungApi -->
+        <dependency>
+            <groupId>de.thkoeln.swp.arzt</groupId>
+            <artifactId>steuerungapi</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</project>

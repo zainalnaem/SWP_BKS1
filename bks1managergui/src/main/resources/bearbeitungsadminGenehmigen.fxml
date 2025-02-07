@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="318.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.thkoeln.swp.bks.managergui.control.bearbeitungsAdminGenehmigenController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ababab" height="318.0" layoutX="-3.0" stroke="TRANSPARENT" strokeType="INSIDE" width="777.0" />
+      <TableView fx:id="bearbeitungsadminTableView" layoutX="12.0" layoutY="15.0" prefHeight="264.0" prefWidth="750.0" />
+      <Button fx:id="bestaetigenBearbeitungsAdminCloseWindow_Button" layoutX="575.0" layoutY="284.0" mnemonicParsing="false" onAction="#bestaetigenBearbeitungsAdminCloseWindow_Button_On" prefHeight="13.0" prefWidth="89.0" text="Bestaetigen">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="abbrechenBearbeitungsAdminCloseWindow_Button" layoutX="673.0" layoutY="284.0" mnemonicParsing="false" onAction="#abbrechenBearbeitungsAdminCloseWindow_Button_On" prefHeight="28.0" prefWidth="89.0" text="Abbrechen">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

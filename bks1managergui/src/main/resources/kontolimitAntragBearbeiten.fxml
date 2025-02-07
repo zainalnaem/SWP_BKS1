@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="438.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.thkoeln.swp.bks.managergui.control.kontolimitAntragBearbeitenSpinnerController">
+   <children>
+      <Spinner fx:id="spinner" editable="true" layoutX="261.0" layoutY="381.0" />
+      <Text layoutX="23.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Aktueller Dispo" wrappingWidth="124.61639404296875">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="23.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Neuer Dispo">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="bestaetigenDispoBarbeitenToDestroyWindow_Button" layoutX="136.0" layoutY="438.0" mnemonicParsing="false" onAction="#bestaetigenDispoBarbeitenToDestroyWindow_Button_On" prefHeight="26.0" prefWidth="79.0" text="Bestaetigen" />
+      <Button fx:id="abbrechenDispoBarbeitenToDestroyWindow_Button" layoutX="222.0" layoutY="438.0" mnemonicParsing="false" onAction="#abbrechenDispoBarbeitenToDestroyWindow_Button_On" prefHeight="26.0" prefWidth="79.0" text="Abbrechen" />
+      <Label fx:id="aktuellerDispo_Label" layoutX="262.0" layoutY="346.0" prefHeight="20.0" prefWidth="163.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="19.0" prefHeight="38.0" prefWidth="296.0" text="Konto-Limit bearbeiten" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="136.0" prefHeight="20.0" prefWidth="214.0" text="• Kontoidentifikationsnummer">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="171.0" text="• Kontoart">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="206.0" text="• Erstellungsdatum">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="241.0" text="• Kontostand">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="276.0" text="• Kontostatus">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Line endX="402.0" layoutX="35.0" layoutY="118.0" startX="-36.0" strokeWidth="2.0" />
+      <Label fx:id="Kontoart_Label" layoutX="262.0" layoutY="171.0" prefHeight="20.0" prefWidth="163.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="Erstellungsdatum_Label" layoutX="262.0" layoutY="206.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="Kontostand_Label" layoutX="262.0" layoutY="241.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="Kontostatus_Label" layoutX="262.0" layoutY="276.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="kontoID_Label" layoutX="261.0" layoutY="136.0" prefHeight="25.0" prefWidth="84.0" />
+      <TextArea fx:id="daten_TextArea" editable="false" layoutX="16.0" layoutY="64.0" prefHeight="14.0" prefWidth="405.0" />
+      <Button fx:id="eingeben_Button" layoutX="349.0" layoutY="136.0" mnemonicParsing="false" onAction="#eingeben_Button_On" prefHeight="25.0" prefWidth="74.0" text="Eingeben" />
+      <Label layoutX="23.0" layoutY="311.0" text="• Kunde ID">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="kundeID_Label" layoutX="262.0" layoutY="311.0" prefHeight="20.0" prefWidth="163.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
